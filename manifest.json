@@ -1,0 +1,12 @@
+{
+    "manifest_version": 3,
+    "name": "Simple Blocker",
+    "version": "1.0",
+    "description": "Blocks specific distracting sites.",
+    "permissions": ["declarativeNetRequest"],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "host_permissions": ["*://*.pornhub.com/*"]
+  }
+  
