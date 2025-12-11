@@ -6,7 +6,7 @@ const DEFAULT_SETTINGS = {
   defaultAccessDuration: 15, // minutes
   blocklist: [],
   challengeTypes: {
-    'typing': { difficulty: 3, duration: 1440 }  
+    'typing': { difficulty: 3, duration: 1440 }
   }
 };
 
@@ -113,7 +113,7 @@ function isSiteTemporarilyAccessible(urlPattern) {
 }
 
 // Grant temporary access to a site
-function grantTemporaryAccess(urlPattern, durationMinutes) {
+async function grantTemporaryAccess(urlPattern, durationMinutes, timeSpentOnChallenge = 0) {
   const now = Date.now();
   const expiresAt = now + (durationMinutes * 60 * 1000); // Convert minutes to milliseconds
 
@@ -138,10 +138,11 @@ function grantTemporaryAccess(urlPattern, durationMinutes) {
   updateBlockingRules();
 }
 
+
 // Listen for messages from friction page
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === "grantTemporaryAccess") {
-    grantTemporaryAccess(request.urlPattern, request.duration);
+    grantTemporaryAccess(request.urlPattern, request.duration, request.timeSpent || 0);
     sendResponse({ success: true });
   } else if (request.action === "getSettings") {
     getSettings().then(settings => {
@@ -171,4 +172,3 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
     updateBlockingRules();
   }
 });
-  
