@@ -1,0 +1,303 @@
+:root {
+  --primary-color: #8B5CF6; /* Purple accent */
+  --primary-hover: #7C3AED;
+  --bg-light: #f8f9fa;
+  --bg-card: #ffffff;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --border-color: #e5e7eb;
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --danger-color: #ef4444;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* --------------------------------------------- */
+/* BACKGROUND WITH GRADIENT                      */
+/* --------------------------------------------- */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+  background: linear-gradient(
+    145deg,
+    rgba(139, 92, 246, 0.1),
+    rgba(255, 255, 255, 0.5)
+  );
+
+  color: var(--text-primary);
+  line-height: 1.5;
+  padding: var(--spacing-xl);
+  min-height: 100vh;
+}
+
+/* --------------------------------------------- */
+/* CONTAINER CARD                                */
+/* --------------------------------------------- */
+.container {
+  background: var(--bg-card);
+  border-radius: 14px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+  max-width: 850px;
+  margin: 0 auto;
+  padding: var(--spacing-xl);
+  backdrop-filter: blur(6px);
+}
+
+/* --------------------------------------------- */
+/* HEADER                                        */
+/* --------------------------------------------- */
+.header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.header h1 {
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.subtitle {
+  margin-top: var(--spacing-sm);
+  font-size: 15px;
+  color: var(--text-secondary);
+  opacity: 0.8;
+}
+
+/* --------------------------------------------- */
+/* SECTIONS                                      */
+/* --------------------------------------------- */
+.section {
+  margin-bottom: var(--spacing-xl);
+  padding-bottom: var(--spacing-xl);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.section h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+  color: var(--text-primary);
+}
+
+.section-desc {
+  margin-bottom: var(--spacing-lg);
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+/* --------------------------------------------- */
+/* FORM ELEMENTS                                 */
+/* --------------------------------------------- */
+.form-group {
+  margin-bottom: var(--spacing-lg);
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: var(--spacing-sm);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.input-group {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+#new-blocked-site,
+#new-whitelisted-site,
+input[type="number"] {
+  flex-grow: 1;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 15px;
+  background: #fff;
+}
+
+#new-blocked-site:focus,
+#new-whitelisted-site:focus,
+input[type="number"]:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+}
+
+/* --------------------------------------------- */
+/* BUTTONS                                       */
+/* --------------------------------------------- */
+.btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+  background: var(--bg-light);
+  color: var(--text-primary);
+}
+
+.btn-danger {
+  background: transparent;
+  color: var(--danger-color);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.btn-danger:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* --------------------------------------------- */
+/* BLOCKED / WHITELISTED SITES LIST              */
+/* --------------------------------------------- */
+#blocked-sites-list,
+#whitelisted-sites-list {
+  list-style: none;
+  max-height: 240px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.blocked-site-item,
+.whitelisted-site-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  margin-bottom: var(--spacing-xs);
+  background: #f3f4f6;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: background 0.2s ease;
+}
+
+.blocked-site-item:hover,
+.whitelisted-site-item:hover {
+  background: #ececec;
+}
+
+.site-domain {
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-right: var(--spacing-sm);
+}
+
+.delete-btn {
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------- */
+/* SETTINGS BOXES                                */
+/* --------------------------------------------- */
+.challenge-setting {
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-md);
+  background: var(--bg-light);
+  border-radius: 8px;
+}
+
+.challenge-setting h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+  color: var(--text-primary);
+}
+
+.setting-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-sm);
+}
+
+.setting-row:last-child {
+  margin-bottom: 0;
+}
+
+.setting-row input {
+  width: 120px;
+}
+
+/* --------------------------------------------- */
+/* SAVE BUTTON                                   */
+/* --------------------------------------------- */
+#save-settings-btn {
+  width: 100%;
+  margin-top: var(--spacing-lg);
+  padding: 14px;
+  font-size: 16px;
+}
+
+/* --------------------------------------------- */
+/* FOOTER                                        */
+/* --------------------------------------------- */
+.footer {
+  text-align: center;
+  margin-top: var(--spacing-xl);
+  font-size: 14px;
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+/* --------------------------------------------- */
+/* STATUS MESSAGES                               */
+/* --------------------------------------------- */
+.message {
+  padding: var(--spacing-md);
+  text-align: center;
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-top: var(--spacing-md);
+}
+
+.error {
+  color: var(--danger-color);
+}
+
+.success {
+  color: var(--success-color);
+}

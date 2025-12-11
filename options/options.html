@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Blocker Settings</title>
+    <link rel="stylesheet" href="options.css">
+</head>
+<body>
+    <div class="container">
+
+        <!-- Header -->
+        <div class="header">
+            <h1>App Blocker Settings</h1>
+            <p class="subtitle">Customize your blocking rules and behavior</p>
+        </div>
+
+        <!-- Blocked Sites Section -->
+        <div class="section">
+            <h2>Blocked Sites</h2>
+            <p class="section-desc">
+                Add or remove websites you want the extension to block.  
+                Type a domain and click "Add".
+            </p>
+
+            <div class="form-group">
+                <label for="new-blocked-site">Add Site to Block</label>
+                <div class="input-group">
+                    <input 
+                        type="text" 
+                        id="new-blocked-site" 
+                        placeholder="e.g., facebook.com"
+                    >
+                    <button id="add-site-btn" class="btn btn-primary">Add</button>
+                </div>
+            </div>
+
+            <div class="blocked-sites-section">
+                <ul id="blocked-sites-list">
+                    <!-- Populated dynamically -->
+                </ul>
+            </div>
+        </div>
+
+        <!-- General Settings Section -->
+        <div class="section">
+            <h2>General Settings</h2>
+            <p class="section-desc">
+                These settings let you configure how the blocker behaves.
+            </p>
+
+            <button id="save-settings-btn" class="btn btn-primary">
+                Save Settings
+            </button>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>App Blocker • Stay focused. Stay sharp.</p>
+        </div>
+        
+    </div>
+
+    <script src="options.js"></script>
+</body>
+</html>
