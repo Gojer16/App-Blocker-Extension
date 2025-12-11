@@ -75,14 +75,6 @@ function addBlockedSite() {
                 settings: settings
             }, function(response) {
                 if (response && response.success) {
-                    // Update stats for new blocked site
-                    console.log('Sending addBlockedSite message:', newEntry.urlPattern); // Debug log
-                    chrome.runtime.sendMessage({
-                        action: "addBlockedSite",
-                        siteDomain: newEntry.urlPattern
-                    }, function(response) {
-                        console.log('addBlockedSite response:', response); // Debug log
-                    });
 
                     // Clear input
                     document.getElementById('new-blocked-site').value = '';
