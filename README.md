@@ -10,7 +10,7 @@ When you try to open a distracting site, you must complete a series of productiv
 ## Features
 
 - **Website Blocking**: Block specific domains that typically drain your attention.
-- **Challenge-Based Access**: To unlock a site, you must type 5 motivational paragraphs with full accuracy.
+- **Challenge-Based Access**: To unlock a site, you must type 5 randomly selected motivational paragraphs with full accuracy.
 - **Anti-Cheat Controls**: Copy-paste disabled, shortcuts blocked, text dimming applied as soon as you begin typing.
 - **Time-Based Access**: Completing all 5 paragraphs grants 24 hours of access to the blocked site.
 
@@ -25,7 +25,7 @@ When you try to open a distracting site, you must complete a series of productiv
 1. Visit a blocked domain.
 2. A challenge page appears.
 3. Click Start Typing Challenge.
-4. Type all 5 paragraphs without mistakes.
+4. Type all 5 randomly selected paragraphs without mistakes.
 5. Unlocks page.
 
 ### Managing Configuration
