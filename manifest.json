@@ -3,6 +3,11 @@
     "name": "App Blocker Extension",
     "version": "1.0",
     "description": "Blocks distracting websites and requires challenges to access them temporarily.",
+     "icons": {
+    "16": "icons/16x16.png",
+    "48": "icons/48x48.png",
+    "128": "icons/128x128.png"
+  },
     "permissions": [
       "declarativeNetRequest",
       "storage",
@@ -19,9 +24,6 @@
     "options_page": "options/options.html",
     "host_permissions": [
       "<all_urls>"
-    ],
-    "icons": {
-
-    }
+    ]
   }
   
