@@ -1,0 +1,244 @@
+:root {
+  --primary-color: #8B5CF6; /* Purple accent */
+  --primary-hover: #7C3AED;
+  --bg-light: #f3f4f6;
+  --bg-card: #ffffff;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --border-color: #e5e7eb;
+  --soft-border: rgba(0, 0, 0, 0.06);
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --danger-color: #ef4444;
+    --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  --shadow-soft: 0 2px 6px rgba(0,0,0,0.06);
+  --shadow-medium: 0 4px 12px rgba(0,0,0,0.10);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif;
+  width: 350px;
+  background-color: var(--bg-light);
+  color: var(--text-primary);
+  line-height: 1.5;
+  padding: var(--spacing-sm);
+}
+
+.container {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  min-height: 200px;
+  box-shadow: var(--shadow-medium);
+  border: 1px solid var(--soft-border);
+}
+
+/* ---------------- HEADER ---------------- */
+
+.header {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.header h1 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+}
+
+/* ---------------- INPUT SECTION ---------------- */
+
+.form-group {
+  margin-bottom: var(--spacing-lg);
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: var(--spacing-sm);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.input-group {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+#new-blocked-site {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  transition: 0.15s ease;
+  background: #fafafa;
+}
+
+#new-blocked-site:hover {
+  background: #fefefe;
+}
+
+#new-blocked-site:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+}
+
+/* helper text */
+.helper-text {
+  margin-top: var(--spacing-xs);
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* ---------------- BUTTONS ---------------- */
+
+.btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-soft);
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.25);
+}
+
+.btn-secondary {
+  background: #fafafa;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+  background: #ffffff;
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: var(--spacing-sm);
+}
+
+/* delete button */
+.btn-danger {
+  background: transparent;
+  color: var(--danger-color);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.btn-danger:hover {
+  background: rgba(239, 68, 68, 0.08);
+}
+
+/* ---------------- BLOCKED SITES ---------------- */
+
+.blocked-sites-section h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+  color: var(--text-primary);
+}
+
+#blocked-sites-list {
+  list-style: none;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: var(--spacing-md);
+  padding-right: 4px; /* prevents scrollbar overlap */
+}
+
+#blocked-sites-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+#blocked-sites-list::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 10px;
+}
+
+.blocked-site-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-sm);
+  margin-bottom: var(--spacing-xs);
+  background: #f9fafb;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  border: 1px solid var(--soft-border);
+  transition: background 0.2s ease;
+}
+
+.blocked-site-item:hover {
+  background: #ffffff;
+}
+
+.blocked-site-domain {
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-right: var(--spacing-sm);
+}
+
+/* ---------------- SETTINGS ---------------- */
+
+.settings-section {
+  text-align: center;
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--border-color);
+}
+
+/* ---------------- MESSAGE STATES ---------------- */
+
+.empty-state {
+  text-align: center;
+  margin-top: var(--spacing-xs);
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.message {
+  padding: var(--spacing-sm);
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: var(--spacing-md);
+}
+
+.error {
+  color: var(--danger-color);
+}
