@@ -11,10 +11,14 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('blocked-site').textContent = 'Unknown site';
     }
 
+    // Track when the challenge starts
+    let startTime = null;
+
     // Set up the single challenge button
     document.getElementById('start-unlock-challenge').addEventListener('click', function() {
         // Show confirmation modal
         if (confirm('Are you sure you want to proceed with the typing challenge? This will require typing 5 randomly selected productivity-focused paragraphs accurately.')) {
+            startTime = Date.now(); // Record start time when challenge begins
             startTypingChallenge(originalUrl);
         }
     });
@@ -27,6 +31,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Set up Google button (handled by HTML link)
 });
+
+// Function to format seconds into MM:SS format
+function formatTime(seconds) {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+}
 
 function startTypingChallenge(originalUrl) {
     // Hide challenge options
@@ -249,11 +260,15 @@ const productivityTexts = [
 }
 
 function completeChallenge(duration, originalUrl) {
+    // Calculate time spent on challenge (in seconds)
+    const timeSpent = Math.floor((Date.now() - startTime) / 1000);
+
     // Send message to background script to grant temporary access
     chrome.runtime.sendMessage({
         action: "grantTemporaryAccess",
         urlPattern: new URL(originalUrl).hostname,
-        duration: parseInt(duration)
+        duration: parseInt(duration),
+        timeSpent: timeSpent
     }, function(response) {
         if (response && response.success) {
             // Show success message
@@ -262,6 +277,7 @@ function completeChallenge(duration, originalUrl) {
                     <h2>Challenge Complete!</h2>
                     <p>You've successfully completed all 5 typing challenges.</p>
                     <p>You now have access to this site for 24 hours.</p>
+                    <p>Time spent: ${formatTime(timeSpent)}</p>
                     <p>Click below to continue to your destination:</p>
                     <a href="${originalUrl}" class="btn btn-primary" style="display: inline-block; margin-top: 20px;">Go to Site</a>
                 </div>
@@ -273,4 +289,11 @@ function completeChallenge(duration, originalUrl) {
             document.querySelector('.challenge-selection').style.display = 'block';
         }
     });
+}
+
+// Function to format seconds into MM:SS format
+function formatTime(seconds) {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
 }
