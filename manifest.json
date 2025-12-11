@@ -1,12 +1,27 @@
 {
     "manifest_version": 3,
-    "name": "Simple Blocker",
+    "name": "App Blocker Extension",
     "version": "1.0",
-    "description": "Blocks specific distracting sites.",
-    "permissions": ["declarativeNetRequest"],
+    "description": "Blocks distracting websites and requires challenges to access them temporarily.",
+    "permissions": [
+      "declarativeNetRequest",
+      "storage",
+      "alarms",
+      "webNavigation"
+    ],
     "background": {
       "service_worker": "background.js"
     },
-    "host_permissions": ["*://*.pornhub.com/*"]
+    "action": {
+      "default_popup": "popup/popup.html",
+      "default_title": "App Blocker"
+    },
+    "options_page": "options/options.html",
+    "host_permissions": [
+      "<all_urls>"
+    ],
+    "icons": {
+
+    }
   }
   
