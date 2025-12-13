@@ -50,7 +50,11 @@ async function saveSettings(settings) {
 // Update blocking rules based on current blocklist
 async function updateBlockingRules() {
   const settings = await getSettings();
-  const { blocklist = [], whitelist = [] } = settings;
+  const { blocklist = [] } = settings;
+
+  // Get current session rules to remove them all before adding new ones
+  const existingRules = await chrome.declarativeNetRequest.getSessionRules();
+  const removeRuleIds = existingRules.map(rule => rule.id);
 
   // Prepare rules for blocking
   const rulesToAdd = [];
@@ -84,9 +88,9 @@ async function updateBlockingRules() {
   try {
     await chrome.declarativeNetRequest.updateSessionRules({
       addRules: rulesToAdd,
-      removeRuleIds: rulesToAdd.map(rule => rule.id)
+      removeRuleIds: removeRuleIds
     });
-    console.log(`${rulesToAdd.length} blocking rules updated`);
+    console.log(`${rulesToAdd.length} blocking rules updated, ${removeRuleIds.length} rules removed.`);
   } catch (error) {
     console.error('Error updating blocking rules:', error);
   }
@@ -125,12 +129,10 @@ async function grantTemporaryAccess(urlPattern, durationMinutes, timeSpentOnChal
 
   // Schedule cleanup when access expires
   setTimeout(() => {
-    if (temporaryAccessMap.has(urlPattern)) {
-      const accessInfo = temporaryAccessMap.get(urlPattern);
-      if (Date.now() >= accessInfo.expiresAt) {
-        temporaryAccessMap.delete(urlPattern);
-        updateBlockingRules(); // Re-enable blocking after timeout
-      }
+    const accessInfo = temporaryAccessMap.get(urlPattern); // Get directly
+    if (accessInfo && Date.now() >= accessInfo.expiresAt) { // Check if accessInfo exists and is expired
+      temporaryAccessMap.delete(urlPattern);
+      updateBlockingRules(); // Re-enable blocking after timeout
     }
   }, durationMinutes * 60 * 1000);
 
